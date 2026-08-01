@@ -20,5 +20,3 @@ RUN curl -sSL https://bootstrap.pypa.io/get-pip.py | /opt/hermes/.venv/bin/pytho
     yt-dlp beautifulsoup4 httpx
 
 RUN chown -R hermes:hermes /opt/hermes/.venv
-
-USER hermes
