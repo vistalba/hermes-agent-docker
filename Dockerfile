@@ -1,10 +1,8 @@
-FROM docker.io/nousresearch/hermes-agent:latest
+FROM nousresearch/hermes-agent:latest
 
 USER root
 
-# Install essential system dependencies and headless browser tools
-RUN apt-get update && apt-get install -y \
-    sudo \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     git \
     ffmpeg \
@@ -16,15 +14,14 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-fra \
     fonts-noto-core \
     fonts-liberation \
-    && chown -R hermes:hermes /opt/hermes/.venv/ \
     && rm -rf /var/lib/apt/lists/*
 
-# Install high-utility Python packages directly into Hermes venv
-RUN su hermes -c "/opt/hermes/.venv/bin/python -m uv pip install \
+RUN /opt/hermes/.venv/bin/pip install --no-cache-dir \
     ddgs pymupdf marker-pdf playwright pandas numpy matplotlib \
-    yt-dlp beautifulsoup4 httpx"
+    yt-dlp beautifulsoup4 httpx
 
-# Initialize Playwright browser binaries for the hermes user
-# RUN su hermes -c "/opt/hermes/.venv/bin/playwright install chromium"
+RUN /opt/hermes/.venv/bin/playwright install chromium
+
+RUN chown -R hermes:hermes /opt/hermes/.venv
 
 USER hermes
