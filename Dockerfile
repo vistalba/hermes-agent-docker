@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-liberation \
     && rm -rf /var/lib/apt/lists/*
 
-RUN /opt/hermes/.venv/bin/pip install --no-cache-dir \
+RUN curl -sSL https://bootstrap.pypa.io/get-pip.py | /opt/hermes/.venv/bin/python - \
+    && /opt/hermes/.venv/bin/pip install --no-cache-dir \
     ddgs pymupdf marker-pdf playwright pandas numpy matplotlib \
     yt-dlp beautifulsoup4 httpx
 
