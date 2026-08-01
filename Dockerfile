@@ -25,6 +25,6 @@ RUN su hermes -c "/opt/hermes/.venv/bin/python -m uv pip install \
     yt-dlp beautifulsoup4 httpx"
 
 # Initialize Playwright browser binaries for the hermes user
-RUN su hermes -c "/opt/hermes/.venv/bin/playwright install chromium"
+# RUN su hermes -c "/opt/hermes/.venv/bin/playwright install chromium"
 
 USER hermes
