@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN curl -sSL https://bootstrap.pypa.io/get-pip.py | /opt/hermes/.venv/bin/python - \
     && /opt/hermes/.venv/bin/pip install --no-cache-dir \
+    torch torchvision --index-url https://download.pytorch.org/whl/cpu \
+    && /opt/hermes/.venv/bin/pip install --no-cache-dir \
     ddgs pymupdf marker-pdf pandas numpy matplotlib \
     yt-dlp beautifulsoup4 httpx
 
