@@ -1,4 +1,4 @@
-FROM nousresearch/hermes-agent:latest
+FROM docker.io/nousresearch/hermes-agent:latest
 
 USER root
 
